@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 // const express = require('express');
 import express from "express";
 import{MongoClient} from "mongodb";
+import {moviesRouter} from "./routes/movies.js";
 import { getMovies, createMovies, getMovieById, deleteMovieById, updateMovieById } from "./helper.js";
 
 const app = express();
@@ -38,7 +39,7 @@ async function createConnection(){
 export const client = await createConnection();
 
 
-app.use("/movies", moviesRouter)
+app.use("/movies", moviesRouter);
 
 app.listen(PORT, () => console.log("App is started in", PORT)
     );
