@@ -15,7 +15,7 @@ app.use(express.json()); // every request in the app body is parsed as JSON
 //express.json is in-built middleware
  
 app.get('/', function (request, response) {
-  response.send("Hello 🌏😀");
+  response.send("Hello 🌏*****😀");
 });
 
  // const movies moved to backup.json file.
