@@ -7,7 +7,8 @@ import {moviesRouter} from "./routes/movies.js";
 import { getMovies, createMovies, getMovieById, deleteMovieById, updateMovieById } from "./helper.js";
 
 const app = express();
-const PORT = 9000;
+const PORT = process.env.PORT; // this code for heroku to autoassign the port after deploy there.
+// const PORT = 9000; // change this to above code before deploy to heroku.
 
 //Middleware 
 app.use(express.json()); // every request in the app body is parsed as JSON 
