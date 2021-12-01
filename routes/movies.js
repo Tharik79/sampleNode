@@ -3,7 +3,13 @@ import { getMovies, createMovies, getMovieById, deleteMovieById, updateMovieById
 
 const router = express.Router();
 
-router.get("/", async (request, response) => {
+//after router.get, post, get, delete, put (...) created and organized, last part is to include route and take router and ("/") and ("/:id") as a common 
+//items to further simplyfy the code below. Also semicolon in betwwen get, post, get delete should be removed to make it
+// as a single code.
+
+router
+.route("/")
+.get( async (request, response) => {
     // request -> query praams
       console.log(request.query);
     // to do filter by language , to write additional code before response.send.
@@ -45,16 +51,20 @@ router.get("/", async (request, response) => {
         // cursor -> pagination 1,2,3,4,5..
     
         response.send(filterMovies);
-    });
+    })
     
-    router.post("/", async (request, response) => {
+  .post( async (request, response) => {
       const data = request.body;
       //create movies -> db.movies.insertMany(data)
       const result = await createMovies(data);
       response.send(result);
     });
     
-    router.get("/:id", async (request, response) => {
+  
+  
+    router
+    .route("/:id")
+    .get(async (request, response) => {
       console.log(request.params);
       const {id} = request.params;
     
@@ -69,12 +79,10 @@ router.get("/", async (request, response) => {
         ? response.send(movie) : response.status(404).send({message: "No Matching Movies Found"});
     
     
-    });
-    
-    
+    })   
     
     //Task given, soving below:
-    router.delete("/:id", async (request, response) => {
+    .delete(async (request, response) => {
       console.log(request.params);
       const {id} = request.params;
     
@@ -91,10 +99,9 @@ router.get("/", async (request, response) => {
         result.deleteCount > 0 
         ? response.send(result)
         :response.status(404).send({message: "No matching movies Found"});
-     } );
-    
-    
-     router.put("/:id", async (request, response) => {
+     } )
+        
+    .put(async (request, response) => {
       console.log(request.params);
       const {id} = request.params;
       const data = request.body;
@@ -115,3 +122,5 @@ router.get("/", async (request, response) => {
      } );
 
      export const moviesRouter = router;
+
+     
